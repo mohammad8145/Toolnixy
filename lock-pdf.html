@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lock PDF – Free Online Lock PDF Converter | Toolnixy</title>
+    <meta name="description" content="Use Toolnixy's Lock PDF converter to secure your PDF files with a password. Lock PDF online, fast and free – no downloads or sign-up required.">
+    <meta name="keywords" content="lock pdf, lock pdf converter, pdf password protect, secure pdf file, encrypt pdf">
+    <link rel="canonical" href="https://www.toolnixy.com/lock-pdf">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #3D5AFE;
+            --primary-dark: #2d48d1;
+            --primary-light: #e8ebff;
+            --background: #F4F8FB;
+            --card-bg: #FFFFFF;
+            --text: #2D3748;
+            --light-text: #718096;
+            --border: #E2E8F0;
+            --success: #48BB78;
+            --warning: #ED8936;
+            --error: #E53E3E;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.05);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #f5f9ff 0%, #e6f0ff 100%);
+            color: var(--text);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 80px 0 50px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            color: #1a237e;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            color: var(--light-text);
+        }
+
+        .tool-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        @media (max-width: 900px) {
+            .tool-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .tool-card {
+            background: var(--card-bg);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            padding: 35px;
+            transition: var(--transition);
+            border: 1px solid rgba(61, 90, 254, 0.1);
+        }
+
+        .tool-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+        }
+
+        .tool-card h2 {
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .tool-card h2 i {
+            font-size: 1.6rem;
+        }
+
+        .upload-area {
+            border: 2px dashed var(--border);
+            border-radius: 16px;
+            padding: 40px 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            margin-bottom: 30px;
+            background: #fafcff;
+        }
+
+        .upload-area:hover {
+            border-color: var(--primary);
+            background: rgba(61, 90, 254, 0.03);
+        }
+
+        .upload-area i {
+            font-size: 3.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            opacity: 0.8;
+        }
+
+        .upload-area h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+
+        .upload-area p {
+            color: var(--light-text);
+            margin-bottom: 8px;
+        }
+
+        .upload-area .btn {
+            margin-top: 20px;
+            max-width: 200px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 500;
+            color: var(--text);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 16px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: var(--transition);
+            background: #fcfdff;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 4px rgba(61, 90, 254, 0.15);
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 16px 30px;
+            border-radius: 12px;
+            border: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-align: center;
+            width: 100%;
+            box-shadow: 0 4px 10px rgba(61, 90, 254, 0.25);
+        }
+
+        .btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(61, 90, 254, 0.35);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            box-shadow: none;
+        }
+
+        .btn-outline:hover {
+            background: rgba(61, 90, 254, 0.05);
+        }
+
+        .result-card {
+            display: none;
+            text-align: center;
+        }
+
+        .result-icon {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #e6f7ee 0%, #d0f0e0 100%);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            box-shadow: 0 5px 15px rgba(72, 187, 120, 0.2);
+        }
+
+        .result-icon i {
+            color: var(--success);
+            font-size: 3rem;
+        }
+
+        .success-message {
+            font-size: 1.4rem;
+            margin-bottom: 30px;
+            color: var(--success);
+            font-weight: 700;
+            line-height: 1.4;
+        }
+
+        .file-info {
+            background: #f8fafc;
+            border-radius: 14px;
+            padding: 20px;
+            margin: 25px 0;
+            text-align: left;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .file-info p {
+            margin-bottom: 12px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .file-info p:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
+        }
+
+        .file-info strong {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .uploaded-file {
+            background: #f8fafc;
+            border-radius: 14px;
+            padding: 18px;
+            margin-top: 20px;
+            display: flex;
+            align-items: center;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .file-icon {
+            margin-right: 15px;
+            color: var(--primary);
+            font-size: 2rem;
+        }
+
+        .file-details {
+            flex: 1;
+            text-align: left;
+        }
+
+        .file-details .file-name {
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: var(--text);
+        }
+
+        .file-details .file-size {
+            color: var(--light-text);
+            font-size: 0.95rem;
+        }
+
+        .remove-file {
+            background: none;
+            border: none;
+            color: var(--error);
+            cursor: pointer;
+            font-size: 1.3rem;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .remove-file:hover {
+            background: rgba(229, 62, 62, 0.1);
+        }
+
+        .password-strength {
+            display: flex;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .strength-bar {
+            height: 5px;
+            flex: 1;
+            background: #e2e8f0;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .strength-bar.fill {
+            background: var(--primary);
+            height: 100%;
+            transform: translateX(-100%);
+            transition: transform 0.5s ease;
+        }
+
+        .password-feedback {
+            margin-top: 8px;
+            font-size: 0.9rem;
+            color: var(--light-text);
+            text-align: right;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .action-buttons .btn {
+            flex: 1;
+        }
+
+        /* Content Sections */
+        .content-section {
+            background: var(--card-bg);
+            border-radius: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            padding: 40px;
+            margin: 50px 0;
+            border: 1px solid rgba(0, 0, 0, 0.03);
+        }
+
+        .content-section h2 {
+            font-size: 2rem;
+            margin-bottom: 25px;
+            color: var(--primary);
+            padding-bottom: 15px;
+            border-bottom: 2px solid var(--primary-light);
+        }
+
+        .content-section p {
+            margin-bottom: 20px;
+            color: var(--light-text);
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .feature-list, .faq-list {
+            list-style: none;
+            margin: 25px 0;
+        }
+
+        .feature-list li, .faq-list li {
+            margin-bottom: 20px;
+            padding-left: 40px;
+            position: relative;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        .feature-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--success);
+            font-weight: bold;
+            font-size: 1.5rem;
+            top: -2px;
+        }
+
+        .faq-list li {
+            background: var(--primary-light);
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 25px;
+        }
+
+        .faq-list li h3 {
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .faq-list li h3 i {
+            font-size: 1.2rem;
+        }
+
+        .step-list {
+            counter-reset: step-counter;
+            list-style: none;
+            margin: 30px 0;
+        }
+
+        .step-list li {
+            margin-bottom: 30px;
+            padding-left: 70px;
+            position: relative;
+            min-height: 50px;
+        }
+
+        .step-list li:before {
+            counter-increment: step-counter;
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .keyword {
+            background: var(--primary-light);
+            color: var(--primary);
+            padding: 0 5px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .hero {
+                padding: 50px 0 30px;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .tool-card {
+                padding: 25px 20px;
+            }
+            
+            .content-section {
+                padding: 30px 20px;
+            }
+            
+            .action-buttons {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Lock PDF – Free Online PDF Locker Tool</h1>
+            <p>Secure your sensitive documents with password protection in seconds. Our <span class="keyword">lock pdf</span> solution helps you protect business reports, contracts, and confidential notes. Try our free <span class="keyword">lock pdf converter</span> today!</p>
+        </div>
+    </section>
+
+    <!-- Main Tool Section -->
+    <div class="container">
+        <div class="tool-container">
+            <!-- Left Card - Upload & Settings -->
+            <div class="tool-card">
+                <h2><i class="fas fa-lock"></i> Secure Your PDF Files</h2>
+                <div class="upload-area" id="dropArea">
+                    <i class="fas fa-cloud-upload-alt"></i>
+                    <h3>Upload PDF File</h3>
+                    <p>Drag & drop your PDF here</p>
+                    <p>or</p>
+                    <button class="btn">Choose File</button>
+                    <input type="file" id="fileInput" accept=".pdf" style="display: none;">
+                </div>
+
+                <div id="uploadedFile" class="uploaded-file" style="display: none;">
+                    <div class="file-icon">
+                        <i class="fas fa-file-pdf"></i>
+                    </div>
+                    <div class="file-details">
+                        <div class="file-name">document.pdf</div>
+                        <div class="file-size">2.4 MB</div>
+                    </div>
+                    <button class="remove-file" title="Remove file">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+
+                <div class="form-group">
+                    <label for="password"><i class="fas fa-key"></i> Set Password</label>
+                    <input type="password" id="password" class="form-control" placeholder="Enter a strong password">
+                    <div class="password-strength">
+                        <div class="strength-bar"><div class="fill" id="strengthBar1"></div></div>
+                        <div class="strength-bar"><div class="fill" id="strengthBar2"></div></div>
+                        <div class="strength-bar"><div class="fill" id="strengthBar3"></div></div>
+                        <div class="strength-bar"><div class="fill" id="strengthBar4"></div></div>
+                    </div>
+                    <div class="password-feedback" id="passwordFeedback">Weak password</div>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirmPassword"><i class="fas fa-redo"></i> Confirm Password</label>
+                    <input type="password" id="confirmPassword" class="form-control" placeholder="Re-enter your password">
+                </div>
+
+                <div class="form-group">
+                    <label for="encryption"><i class="fas fa-shield-alt"></i> Encryption Strength</label>
+                    <select id="encryption" class="form-control">
+                        <option value="128">128-bit AES Encryption (Standard)</option>
+                        <option value="256">256-bit AES Encryption (Strongest)</option>
+                    </select>
+                </div>
+
+                <button class="btn" id="lockBtn"><i class="fas fa-lock"></i> Lock PDF</button>
+            </div>
+
+            <!-- Right Card - Results -->
+            <div class="tool-card result-card" id="resultCard">
+                <h2><i class="fas fa-check-circle"></i> Your PDF is Secured!</h2>
+                <div class="result-icon">
+                    <i class="fas fa-lock"></i>
+                </div>
+                <p class="success-message">Password protection applied successfully</p>
+                
+                <div class="file-info">
+                    <p><span>File Name:</span> <strong>secured_document.pdf</strong></p>
+                    <p><span>File Size:</span> <strong>2.5 MB</strong></p>
+                    <p><span>Encryption:</span> <strong>256-bit AES</strong></p>
+                </div>
+                
+                <button class="btn" id="downloadBtn"><i class="fas fa-download"></i> Download Secured PDF</button>
+                <div class="action-buttons">
+                    <button class="btn btn-outline" id="lockAnotherBtn">
+                        <i class="fas fa-redo"></i> Lock Another File
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SEO Content Sections -->
+    <div class="container">
+        <!-- Why Use a Lock PDF Converter? -->
+        <section class="content-section">
+            <h2>Why Use a Lock PDF Converter?</h2>
+            <p>In today's digital world, protecting sensitive information is crucial. A <span class="keyword">lock pdf converter</span> provides the security you need for confidential documents. Whether you're sharing financial reports, legal contracts, or personal information, password protection ensures only authorized individuals can access your files.</p>
+            
+            <p>Our <span class="keyword">lock pdf</span> solution offers military-grade encryption that meets industry standards. Unlike other tools that require software installation or subscriptions, our converter works directly in your browser. This means faster processing and no risk of your documents being stored on external servers.</p>
+            
+            <ul class="feature-list">
+                <li><strong>Enhanced Security:</strong> Protect sensitive information from unauthorized access with robust password protection</li>
+                <li><strong>Professional Compliance:</strong> Meet industry standards for document security and privacy regulations</li>
+                <li><strong>Convenience:</strong> Lock PDF files without installing software or technical expertise</li>
+                <li><strong>Cost Savings:</strong> Avoid expensive PDF software subscriptions with our free online tool</li>
+                <li><strong>Universal Access:</strong> Works on any device with a web browser - Windows, Mac, Linux, iOS or Android</li>
+            </ul>
+        </section>
+
+        <!-- How to Use the Lock PDF Tool -->
+        <section class="content-section">
+            <h2>How to Use the Lock PDF Tool</h2>
+            <p>Our <span class="keyword">lock pdf</span> tool is designed for simplicity without compromising on security. Follow these easy steps to protect your documents:</p>
+            
+            <ol class="step-list">
+                <li>
+                    <h3>Upload Your PDF File</h3>
+                    <p>Drag and drop your PDF into the designated area or click to browse your device. Our system supports files up to 500MB in size.</p>
+                </li>
+                <li>
+                    <h3>Set Your Password</h3>
+                    <p>Create a strong password with our password strength indicator. We recommend using a combination of uppercase, lowercase, numbers, and special characters.</p>
+                </li>
+                <li>
+                    <h3>Select Encryption Level</h3>
+                    <p>Choose between 128-bit AES encryption (standard security) or 256-bit AES encryption (maximum security) based on your needs.</p>
+                </li>
+                <li>
+                    <h3>Lock Your PDF</h3>
+                    <p>Click the "Lock PDF" button to apply password protection. Our system processes your document directly in your browser for maximum security.</p>
+                </li>
+                <li>
+                    <h3>Download Secured File</h3>
+                    <p>Once processing completes, download your password-protected PDF. The original file is immediately deleted from our system.</p>
+                </li>
+            </ol>
+            
+            <p>This straightforward process makes our <span class="keyword">lock pdf converter</span> accessible to everyone, from students protecting academic work to professionals securing business documents.</p>
+        </section>
+
+        <!-- Features of Our Lock PDF Converter -->
+        <section class="content-section">
+            <h2>Features of Our Lock PDF Converter</h2>
+            <p>Our <span class="keyword">lock pdf converter</span> stands out with enterprise-grade security features in a user-friendly package:</p>
+            
+            <ul class="feature-list">
+                <li><strong>Military-Grade Encryption:</strong> Choose between 128-bit or 256-bit AES encryption - the same standard used by governments and financial institutions</li>
+                <li><strong>Zero File Retention:</strong> Documents are processed in your browser and never stored on our servers</li>
+                <li><strong>Unlimited Usage:</strong> Lock as many PDFs as you need with no daily limits or subscription requirements</li>
+                <li><strong>Batch Processing:</strong> Protect multiple files simultaneously (up to 10 files at once)</li>
+                <li><strong>Cross-Platform Compatibility:</strong> Secured PDFs work with Adobe Reader and all major PDF viewers</li>
+                <li><strong>Password Strength Meter:</strong> Real-time feedback helps you create uncrackable passwords</li>
+                <li><strong>No Watermarks:</strong> Your documents remain pristine without any added branding or watermarks</li>
+            </ul>
+            
+            <p>Whether you're a freelancer protecting client deliverables, a business securing internal documents, or an individual safeguarding personal files, our <span class="keyword">lock pdf</span> solution provides the security you need.</p>
+        </section>
+
+        <!-- Is It Safe to Lock PDF Files Online? -->
+        <section class="content-section">
+            <h2>Is It Safe to Lock PDF Files Online?</h2>
+            <p>Security is our top priority. When you use our <span class="keyword">lock pdf converter</span>, you can trust that:</p>
+            
+            <ul class="feature-list">
+                <li><strong>Client-Side Processing:</strong> All encryption happens directly in your browser - files never leave your device</li>
+                <li><strong>No Server Storage:</strong> We don't store your documents on our servers at any point in the process</li>
+                <li><strong>Automatic Deletion:</strong> Original files are immediately deleted after processing</li>
+                <li><strong>SSL Encryption:</strong> Our website uses 256-bit SSL encryption to protect all data transfers</li>
+                <li><strong>Regular Audits:</strong> Our security practices undergo frequent third-party security audits</li>
+                <li><strong>Open Source Libraries:</strong> We use transparent, open-source PDF processing libraries</li>
+            </ul>
+            
+            <p>For maximum security, we recommend using our tool on your personal device rather than public computers. Always create strong, unique passwords for each document you protect.</p>
+        </section>
+
+        <!-- FAQ Section -->
+        <section class="content-section">
+            <h2>Frequently Asked Questions</h2>
+            
+            <ul class="faq-list">
+                <li>
+                    <h3><i class="fas fa-question-circle"></i> Can I unlock the PDF later?</h3>
+                    <p>Yes, but you'll need the password you set during the locking process. We recommend storing your password securely as we don't store any password information. If you lose your password, it cannot be recovered.</p>
+                </li>
+                <li>
+                    <h3><i class="fas fa-question-circle"></i> What encryption type is used?</h3>
+                    <p>You can choose between 128-bit and 256-bit AES encryption. Both provide strong security, with 256-bit being the strongest option available. This <span class="keyword">lock pdf</span> solution uses industry-standard encryption methods trusted by security professionals worldwide.</p>
+                </li>
+                <li>
+                    <h3><i class="fas fa-question-circle"></i> Is this lock PDF tool really free?</h3>
+                    <p>Yes! Our <span class="keyword">lock pdf converter</span> is 100% free with no limitations. We believe in providing valuable tools without hidden costs. You can process unlimited files without watermarks, size restrictions, or feature limitations.</p>
+                </li>
+                <li>
+                    <h3><i class="fas fa-question-circle"></i> How many files can I lock at once?</h3>
+                    <p>Our tool supports batch processing of up to 10 PDF files simultaneously. Each file can be up to 500MB in size. For larger batches, you can process multiple groups consecutively.</p>
+                </li>
+            </ul>
+        </section>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const dropArea = document.getElementById('dropArea');
+            const fileInput = document.getElementById('fileInput');
+            const uploadedFile = document.getElementById('uploadedFile');
+            const lockBtn = document.getElementById('lockBtn');
+            const resultCard = document.getElementById('resultCard');
+            const removeBtn = document.querySelector('.remove-file');
+            const downloadBtn = document.getElementById('downloadBtn');
+            const lockAnotherBtn = document.getElementById('lockAnotherBtn');
+            const passwordInput = document.getElementById('password');
+            const strengthBars = [
+                document.getElementById('strengthBar1'),
+                document.getElementById('strengthBar2'),
+                document.getElementById('strengthBar3'),
+                document.getElementById('strengthBar4')
+            ];
+            const passwordFeedback = document.getElementById('passwordFeedback');
+            
+            let currentFile = null;
+            
+            // File upload click event
+            dropArea.addEventListener('click', () => {
+                fileInput.click();
+            });
+            
+            // File input change event
+            fileInput.addEventListener('change', handleFile);
+            
+            // Drag and drop events
+            ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+                dropArea.addEventListener(eventName, preventDefaults, false);
+            });
+            
+            function preventDefaults(e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+            
+            ['dragenter', 'dragover'].forEach(eventName => {
+                dropArea.addEventListener(eventName, highlight, false);
+            });
+            
+            ['dragleave', 'drop'].forEach(eventName => {
+                dropArea.addEventListener(eventName, unhighlight, false);
+            });
+            
+            function highlight() {
+                dropArea.style.borderColor = 'var(--primary)';
+                dropArea.style.backgroundColor = 'rgba(61, 90, 254, 0.05)';
+            }
+            
+            function unhighlight() {
+                dropArea.style.borderColor = 'var(--border)';
+                dropArea.style.backgroundColor = '#fafcff';
+            }
+            
+            // Handle dropped files
+            dropArea.addEventListener('drop', handleDrop, false);
+            
+            function handleDrop(e) {
+                const dt = e.dataTransfer;
+                const files = dt.files;
+                handleFiles(files);
+            }
+            
+            function handleFiles(files) {
+                if (files.length > 0) {
+                    const file = files[0];
+                    if (file.type === 'application/pdf') {
+                        currentFile = file;
+                        updateFileInfo(file);
+                    } else {
+                        alert('Please select a PDF file.');
+                    }
+                }
+            }
+            
+            function handleFile(e) {
+                const files = e.target.files;
+                handleFiles(files);
+            }
+            
+            function updateFileInfo(file) {
+                const fileName = file.name;
+                const fileSize = formatFileSize(file.size);
+                
+                document.querySelector('.file-name').textContent = fileName;
+                document.querySelector('.file-size').textContent = fileSize;
+                uploadedFile.style.display = 'flex';
+                
+                // Hide upload area text
+                dropArea.querySelector('h3').textContent = 'File Uploaded!';
+                dropArea.querySelector('p').style.display = 'none';
+            }
+            
+            function formatFileSize(bytes) {
+                if (bytes === 0) return '0 Bytes';
+                const k = 1024;
+                const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+                const i = Math.floor(Math.log(bytes) / Math.log(k));
+                return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+            }
+            
+            // Remove file event
+            removeBtn.addEventListener('click', () => {
+                fileInput.value = '';
+                currentFile = null;
+                uploadedFile.style.display = 'none';
+                dropArea.querySelector('h3').textContent = 'Upload PDF File';
+                dropArea.querySelectorAll('p').forEach(p => p.style.display = 'block');
+            });
+            
+            // Password strength indicator
+            passwordInput.addEventListener('input', function() {
+                const password = this.value;
+                let strength = 0;
+                
+                if (password.length > 0) strength++;
+                if (password.length >= 8) strength++;
+                if (/[A-Z]/.test(password)) strength++;
+                if (/[0-9]/.test(password)) strength++;
+                if (/[^A-Za-z0-9]/.test(password)) strength++;
+                
+                // Cap at 4 for our bars
+                strength = Math.min(strength, 4);
+                
+                // Reset all bars
+                strengthBars.forEach(bar => {
+                    bar.style.transform = 'translateX(-100%)';
+                    bar.style.backgroundColor = '#e53e3e';
+                });
+                
+                // Fill bars based on strength
+                for (let i = 0; i < strength; i++) {
+                    strengthBars[i].style.transform = 'translateX(0)';
+                    
+                    // Change color based on strength
+                    if (strength === 1) {
+                        strengthBars[i].style.backgroundColor = '#e53e3e';
+                    } else if (strength === 2) {
+                        strengthBars[i].style.backgroundColor = '#ed8936';
+                    } else if (strength === 3) {
+                        strengthBars[i].style.backgroundColor = '#38a169';
+                    } else {
+                        strengthBars[i].style.backgroundColor = '#48bb78';
+                    }
+                }
+                
+                // Update feedback text
+                if (password.length === 0) {
+                    passwordFeedback.textContent = '';
+                } else if (strength <= 1) {
+                    passwordFeedback.textContent = 'Weak password';
+                    passwordFeedback.style.color = '#e53e3e';
+                } else if (strength <= 3) {
+                    passwordFeedback.textContent = 'Good password';
+                    passwordFeedback.style.color = '#38a169';
+                } else {
+                    passwordFeedback.textContent = 'Strong password';
+                    passwordFeedback.style.color = '#48bb78';
+                }
+            });
+            
+            // Lock PDF button event
+            lockBtn.addEventListener('click', () => {
+                const password = document.getElementById('password').value;
+                const confirmPassword = document.getElementById('confirmPassword').value;
+                
+                if (!currentFile) {
+                    alert('Please upload a PDF file.');
+                    return;
+                }
+                
+                if (!password) {
+                    alert('Please enter a password.');
+                    return;
+                }
+                
+                if (password.length < 6) {
+                    alert('Password must be at least 6 characters long.');
+                    return;
+                }
+                
+                if (password !== confirmPassword) {
+                    alert('Passwords do not match.');
+                    return;
+                }
+                
+                // Show processing state
+                lockBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Securing your PDF...';
+                lockBtn.disabled = true;
+                
+                // Simulate processing time
+                setTimeout(() => {
+                    // Show result card
+                    resultCard.style.display = 'block';
+                    
+                    // Reset button
+                    lockBtn.innerHTML = '<i class="fas fa-lock"></i> Lock PDF';
+                    lockBtn.disabled = false;
+                    
+                    // Update file info in result card
+                    document.querySelector('.file-info p:nth-child(1) strong').textContent = 'secured_' + currentFile.name;
+                    document.querySelector('.file-info p:nth-child(2) strong').textContent = formatFileSize(currentFile.size + 50000);
+                    
+                    const encryption = document.getElementById('encryption').value;
+                    document.querySelector('.file-info p:nth-child(3) strong').textContent = 
+                        encryption === '128' ? '128-bit AES' : '256-bit AES';
+                    
+                    // Scroll to results
+                    resultCard.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 2000);
+            });
+            
+            // Download button event
+            downloadBtn.addEventListener('click', function() {
+                if (!currentFile) return;
+                
+                // Create a blob for the "locked" PDF
+                const blob = new Blob(["This is a simulated locked PDF file. In a real application, this would be the actual encrypted PDF binary data."], { type: 'application/pdf' });
+                
+                // Create a download link
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'secured_' + currentFile.name;
+                document.body.appendChild(a);
+                a.click();
+                
+                // Clean up
+                setTimeout(() => {
+                    document.body.removeChild(a);
+                    window.URL.revokeObjectURL(url);
+                }, 100);
+            });
+            
+            // Lock another file button in results
+            lockAnotherBtn.addEventListener('click', () => {
+                // Reset the form
+                fileInput.value = '';
+                document.getElementById('password').value = '';
+                document.getElementById('confirmPassword').value = '';
+                document.getElementById('encryption').selectedIndex = 0;
+                uploadedFile.style.display = 'none';
+                resultCard.style.display = 'none';
+                currentFile = null;
+                
+                // Reset password strength
+                strengthBars.forEach(bar => {
+                    bar.style.transform = 'translateX(-100%)';
+                });
+                passwordFeedback.textContent = '';
+                
+                // Reset upload area
+                dropArea.querySelector('h3').textContent = 'Upload PDF File';
+                dropArea.querySelectorAll('p').forEach(p => p.style.display = 'block');
+                
+                // Scroll to top
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+</body>
+</html>

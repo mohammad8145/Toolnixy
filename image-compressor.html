@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Free online image compressor to reduce image size. Compress JPG, PNG, WEBP images to 20KB, 50KB, 500KB or any target size. No backend, 100% client-side processing for privacy.">
+    <title>Image Compressor – Reduce Image Size to 20KB, 50KB, 500KB</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #FAFAFA;
+            color: #333333;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #D6ECFF;
+            padding: 1.5rem;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .tool-card {
+            background-color: #F0F9FF;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            padding: 2.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #333333;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin: 1.5rem 0 1rem;
+            color: #333333;
+        }
+
+        h3 {
+            font-size: 1.4rem;
+            margin: 1.2rem 0 0.8rem;
+            color: #333333;
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        .upload-area {
+            border: 2px dashed #00C2A8;
+            border-radius: 12px;
+            padding: 3rem 1rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background-color: white;
+            margin-bottom: 2rem;
+        }
+
+        .upload-area:hover {
+            background-color: #e6fffa;
+        }
+
+        .upload-icon {
+            font-size: 3.5rem;
+            color: #00C2A8;
+            margin-bottom: 1rem;
+        }
+
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .control-group {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        select, input {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+        }
+
+        select:focus, input:focus {
+            outline: none;
+            border-color: #00C2A8;
+            box-shadow: 0 0 0 2px rgba(0,194,168,0.2);
+        }
+
+        .preview-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .preview-box {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+        }
+
+        .preview-img {
+            max-width: 100%;
+            max-height: 300px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            background-color: white;
+            padding: 0.5rem;
+        }
+
+        .size-info {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 1rem;
+            font-weight: 500;
+        }
+
+        .size-value {
+            color: #00C2A8;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
+        }
+
+        button {
+            padding: 0.9rem 1.8rem;
+            border: none;
+            border-radius: 12px;
+            font-family: 'Inter', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex: 1;
+            min-width: 150px;
+        }
+
+        .btn-compress {
+            background-color: #00C2A8;
+            color: white;
+        }
+
+        .btn-compress:hover {
+            background-color: #00998A;
+        }
+
+        .btn-download {
+            background-color: #1a73e8;
+            color: white;
+        }
+
+        .btn-download:hover {
+            background-color: #0d62c9;
+        }
+
+        .btn-reset {
+            background-color: #f1f3f4;
+            color: #333;
+        }
+
+        .btn-reset:hover {
+            background-color: #e0e0e0;
+        }
+
+        .faq-item {
+            background: white;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+
+        .seo-content {
+            background: white;
+            border-radius: 12px;
+            padding: 2.5rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+        }
+
+        .seo-section {
+            margin-bottom: 2rem;
+        }
+
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+
+        .feature-card {
+            background: #F0F9FF;
+            border-radius: 12px;
+            padding: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+        }
+
+        .feature-card h3 {
+            color: #00C2A8;
+            margin-bottom: 0.5rem;
+        }
+
+        .loader {
+            display: none;
+            text-align: center;
+            padding: 1rem;
+        }
+
+        .spinner {
+            border: 4px solid rgba(0, 194, 168, 0.2);
+            border-top: 4px solid #00C2A8;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 1rem;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .tool-card, .seo-content {
+                padding: 1.5rem;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .preview-container {
+                flex-direction: column;
+            }
+            
+            .controls {
+                flex-direction: column;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .btn-group {
+                flex-direction: column;
+            }
+            
+            .btn-group button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Image Compressor – Reduce Image Size</h1>
+        <p>Compress JPG, PNG, WEBP images to your desired file size - 100% client-side processing</p>
+    </header>
+
+    <div class="container">
+        <div class="tool-card">
+            <h2>Compress Your Images</h2>
+            <p>Upload an image and select your target file size. Your images are processed entirely in your browser - no server upload required.</p>
+            
+            <div class="upload-area" id="dropArea">
+                <div class="upload-icon">📁</div>
+                <h3>Drag & Drop your image here</h3>
+                <p>or click to browse files</p>
+                <p>Supported formats: JPG, PNG, WEBP</p>
+                <input type="file" id="fileInput" accept=".jpg,.jpeg,.png,.webp" style="display: none;">
+            </div>
+
+            <div class="controls">
+                <div class="control-group">
+                    <label for="targetSize">Target File Size</label>
+                    <select id="targetSize">
+                        <option value="50">Compress to 50KB</option>
+                        <option value="20">Compress to 20KB</option>
+                        <option value="500">Compress to 500KB</option>
+                        <option value="5">Compress to 5KB</option>
+                        <option value="10">Compress to 10KB</option>
+                        <option value="15">Compress to 15KB</option>
+                        <option value="25">Compress to 25KB</option>
+                        <option value="30">Compress to 30KB</option>
+                        <option value="40">Compress to 40KB</option>
+                        <option value="100">Compress to 100KB</option>
+                        <option value="200">Compress to 200KB</option>
+                        <option value="300">Compress to 300KB</option>
+                        <option value="400">Compress to 400KB</option>
+                        <option value="1000">Compress to 1000KB (1MB)</option>
+                        <option value="1500">Compress to 1500KB (1.5MB)</option>
+                        <option value="2000">Compress to 2000KB (2MB)</option>
+                    </select>
+                </div>
+                
+                <div class="control-group">
+                    <label for="quality">Quality (1-100)</label>
+                    <input type="range" id="quality" min="1" max="100" value="80">
+                    <div id="qualityValue">80%</div>
+                </div>
+            </div>
+
+            <div class="loader" id="loader">
+                <div class="spinner"></div>
+                <p>Compressing your image...</p>
+            </div>
+
+            <div class="preview-container">
+                <div class="preview-box">
+                    <h3>Original Image</h3>
+                    <img id="originalPreview" class="preview-img" alt="Original preview">
+                    <div class="size-info">
+                        <span>Original Size:</span>
+                        <span id="originalSize" class="size-value">-</span>
+                    </div>
+                </div>
+                
+                <div class="preview-box">
+                    <h3>Compressed Image</h3>
+                    <img id="compressedPreview" class="preview-img" alt="Compressed preview">
+                    <div class="size-info">
+                        <span>Target Size:</span>
+                        <span id="targetSizeDisplay" class="size-value">-</span>
+                    </div>
+                    <div class="size-info">
+                        <span>Compressed Size:</span>
+                        <span id="compressedSize" class="size-value">-</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="btn-group">
+                <button class="btn-compress" id="compressBtn">Compress Image</button>
+                <button class="btn-download" id="downloadBtn" disabled>Download</button>
+                <button class="btn-reset" id="resetBtn">Reset</button>
+            </div>
+        </div>
+
+        <div class="seo-content">
+            <div class="seo-section">
+                <h2>Introduction to Image Compression</h2>
+                <p>In today's digital landscape, image optimization is crucial for website performance, user experience, and SEO rankings. Our Image Compressor tool allows you to reduce image file sizes while maintaining visual quality, all within your browser. This powerful tool enables you to compress images to specific sizes like 20KB, 50KB, or 500KB without uploading your files to any server.</p>
+                
+                <p>Whether you're a blogger, web developer, social media manager, or business owner, our image compressor provides a simple solution to optimize your images. With the ability to compress to exact file sizes such as 50KB for email attachments, 20KB for mobile optimization, or 500KB for high-quality web display, you have complete control over your image optimization process.</p>
+            </div>
+            
+            <div class="seo-section">
+                <h2>Why Use an Image Compressor?</h2>
+                <p>Image compression offers numerous benefits across various applications:</p>
+                
+                <ul>
+                    <li><strong>Website Performance:</strong> Faster loading times by reducing image file sizes, improving user experience and SEO rankings.</li>
+                    <li><strong>Email Attachments:</strong> Compress images to 50KB for easy email sharing without hitting attachment limits.</li>
+                    <li><strong>Social Media Optimization:</strong> Create perfectly sized images for platforms with strict file size requirements.</li>
+                    <li><strong>Mobile Applications:</strong> Reduce app size by compressing assets to 20KB while maintaining quality.</li>
+                    <li><strong>E-commerce Platforms:</strong> Optimize product images to 500KB for faster page loads and improved conversions.</li>
+                    <li><strong>Storage Optimization:</strong> Save storage space by compressing your image library without quality loss.</li>
+                </ul>
+                
+                <p>Our image compressor to 50kb is perfect for email communications, while the image compressor to 20kb option is ideal for mobile-first applications. For high-resolution needs, the image compressor to 500kb maintains quality while reducing file size significantly.</p>
+            </div>
+            
+            <div class="seo-section">
+                <h2>How Our Image Compressor Works</h2>
+                <p>Our tool uses advanced client-side processing to compress your images without server involvement:</p>
+                
+                <ol>
+                    <li><strong>Upload:</strong> Select your JPG, PNG, or WEBP image via drag-and-drop or file browser</li>
+                    <li><strong>Set Target:</strong> Choose your desired file size (20KB, 50KB, 500KB, or custom)</li>
+                    <li><strong>Preview:</strong> See original and compressed versions side-by-side</li>
+                    <li><strong>Adjust:</strong> Fine-tune quality settings for optimal balance</li>
+                    <li><strong>Download:</strong> Save your optimized image instantly</li>
+                </ol>
+                
+                <p>All processing happens in your browser, ensuring complete privacy and security for your images. Whether you need an image compressor to 50kb for email attachments or an image compressor to 500kb for web galleries, our tool delivers professional results instantly.</p>
+            </div>
+            
+            <div class="seo-section">
+                <h2>Key Features of Our Image Compressor</h2>
+                
+                <div class="feature-list">
+                    <div class="feature-card">
+                        <h3>Precise Size Control</h3>
+                        <p>Compress images to exact file sizes from 5KB to 2MB, including popular targets like 20KB, 50KB, and 500KB.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h3>Browser Processing</h3>
+                        <p>100% client-side compression ensures your images never leave your computer.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h3>Multi-Format Support</h3>
+                        <p>Works with JPG, PNG, and WEBP formats - the most common web image types.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h3>Visual Comparison</h3>
+                        <p>Side-by-side previews with file size information help you evaluate results.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h3>Quality Adjustment</h3>
+                        <p>Fine-tune compression with our quality slider for optimal results.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <h3>Responsive Design</h3>
+                        <p>Works perfectly on desktops, tablets, and mobile devices.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="seo-section">
+                <h2>Compatibility Information</h2>
+                <p>Our Image Compressor works on all modern browsers including Chrome, Firefox, Safari, Edge, and Opera. The tool requires JavaScript to function but has no external dependencies. For optimal performance, we recommend using the latest browser versions.</p>
+                
+                <p>The compression algorithm uses advanced canvas techniques that are supported by all modern browsers. If you encounter any issues, please update your browser to the latest version. The image compressor to 50kb, image compressor to 20kb, and image compressor to 500kb functions work identically across all compatible browsers.</p>
+            </div>
+            
+            <div class="seo-section">
+                <h2>Frequently Asked Questions</h2>
+                
+                <div class="faq-item">
+                    <h3>How does this image compressor work?</h3>
+                    <p>Our tool uses HTML5 Canvas technology to process your images directly in your browser. When you upload an image, we draw it on a canvas element and then export it with optimized settings to achieve your target file size.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3>Are my images uploaded to a server?</h3>
+                    <p>No, all processing happens in your browser. Your images never leave your computer, ensuring complete privacy and security.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3>What image formats are supported?</h3>
+                    <p>We support JPG, PNG, and WEBP formats. These are the most common image formats used on the web today.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3>Can I compress to exact file sizes like 20KB or 50KB?</h3>
+                    <p>Yes, our tool allows you to select specific target sizes including 20KB, 50KB, and 500KB. The algorithm will automatically adjust settings to get as close as possible to your selected size.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3>Will image compression reduce quality?</h3>
+                    <p>Compression always involves a trade-off between file size and quality. Our tool finds the optimal balance by adjusting quality settings while maintaining visual integrity. You can preview the results before downloading.</p>
+                </div>
+                
+                <div class="faq-item">
+                    <h3>Is there a file size limit?</h3>
+                    <p>While there's no strict limit, very large images (over 10MB) may cause performance issues on some devices. We recommend compressing images individually for best results.</p>
+                </div>
+            </div>
+            
+            <div class="seo-section">
+                <h2>Conclusion & Next Steps</h2>
+                <p>Optimizing images is essential for modern digital experiences. Our Image Compressor provides a simple, secure, and powerful solution to reduce image file sizes without compromising privacy. With precise control over output size (including popular targets like 20KB, 50KB, and 500KB), you can ensure your images load quickly while maintaining quality.</p>
+                
+                <p>Start optimizing your images today by uploading your first file. Experience the benefits of faster websites, smaller email attachments, and optimized storage. Remember to use our image compressor to 50kb for email-friendly images, our image compressor to 20kb for mobile optimization, and our image compressor to 500kb for high-quality web display needs.</p>
+                
+                <p>Ready to compress your images? <a href="#fileInput">Upload your first image now</a> and experience the difference optimized images can make!</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2023 Image Compressor – Reduce Image Size | All Rights Reserved</p>
+        <p>100% Client-Side Processing | No Image Uploads | Privacy Focused</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const fileInput = document.getElementById('fileInput');
+            const dropArea = document.getElementById('dropArea');
+            const compressBtn = document.getElementById('compressBtn');
+            const downloadBtn = document.getElementById('downloadBtn');
+            const resetBtn = document.getElementById('resetBtn');
+            const targetSizeSelect = document.getElementById('targetSize');
+            const qualitySlider = document.getElementById('quality');
+            const qualityValue = document.getElementById('qualityValue');
+            const originalPreview = document.getElementById('originalPreview');
+            const compressedPreview = document.getElementById('compressedPreview');
+            const originalSize = document.getElementById('originalSize');
+            const compressedSize = document.getElementById('compressedSize');
+            const targetSizeDisplay = document.getElementById('targetSizeDisplay');
+            const loader = document.getElementById('loader');
+            
+            let originalImage = null;
+            let compressedImageData = null;
+            
+            // Event listeners
+            dropArea.addEventListener('click', () => fileInput.click());
+            dropArea.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                dropArea.style.backgroundColor = '#e6fffa';
+            });
+            dropArea.addEventListener('dragleave', () => {
+                dropArea.style.backgroundColor = 'white';
+            });
+            dropArea.addEventListener('drop', handleDrop);
+            fileInput.addEventListener('change', handleFileSelect);
+            compressBtn.addEventListener('click', compressImage);
+            downloadBtn.addEventListener('click', downloadImage);
+            resetBtn.addEventListener('click', resetTool);
+            qualitySlider.addEventListener('input', updateQualityValue);
+            
+            function updateQualityValue() {
+                qualityValue.textContent = `${qualitySlider.value}%`;
+            }
+            
+            function handleDrop(e) {
+                e.preventDefault();
+                dropArea.style.backgroundColor = 'white';
+                
+                if (e.dataTransfer.files.length) {
+                    processImageFile(e.dataTransfer.files[0]);
+                }
+            }
+            
+            function handleFileSelect(e) {
+                if (e.target.files.length) {
+                    processImageFile(e.target.files[0]);
+                }
+            }
+            
+            function processImageFile(file) {
+                if (!file.type.match('image.*')) {
+                    alert('Please select an image file (JPG, PNG, WEBP)');
+                    return;
+                }
+                
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    originalImage = new Image();
+                    originalImage.onload = function() {
+                        originalPreview.src = e.target.result;
+                        originalSize.textContent = formatFileSize(file.size);
+                        downloadBtn.disabled = true;
+                    };
+                    originalImage.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+            
+            function compressImage() {
+                if (!originalImage) {
+                    alert('Please upload an image first');
+                    return;
+                }
+                
+                const targetKB = parseInt(targetSizeSelect.value);
+                const quality = parseInt(qualitySlider.value) / 100;
+                
+                if (targetKB <= 0) {
+                    alert('Please select a valid target size');
+                    return;
+                }
+                
+                loader.style.display = 'block';
+                targetSizeDisplay.textContent = `${targetKB}KB`;
+                
+                // Use a timeout to allow UI to update before starting compression
+                setTimeout(() => {
+                    try {
+                        const canvas = document.createElement('canvas');
+                        const ctx = canvas.getContext('2d');
+                        
+                        // Set canvas dimensions to match image
+                        canvas.width = originalImage.width;
+                        canvas.height = originalImage.height;
+                        
+                        // Draw original image on canvas
+                        ctx.drawImage(originalImage, 0, 0);
+                        
+                        // Get image type
+                        const fileType = getFileType(originalImage.src);
+                        
+                        // Convert to data URL with specified quality
+                        let compressedDataURL = canvas.toDataURL(`image/${fileType}`, quality);
+                        let compressedBlob = dataURLToBlob(compressedDataURL);
+                        let compressedSizeKB = compressedBlob.size / 1024;
+                        
+                        // If the compressed size is larger than target, we need to scale down
+                        if (compressedSizeKB > targetKB) {
+                            // Calculate required scale factor
+                            const scaleFactor = Math.sqrt(targetKB / compressedSizeKB) * 0.95;
+                            
+                            // Create new canvas with scaled dimensions
+                            const scaledCanvas = document.createElement('canvas');
+                            const scaledCtx = scaledCanvas.getContext('2d');
+                            
+                            scaledCanvas.width = originalImage.width * scaleFactor;
+                            scaledCanvas.height = originalImage.height * scaleFactor;
+                            
+                            // Draw scaled image
+                            scaledCtx.drawImage(originalImage, 0, 0, scaledCanvas.width, scaledCanvas.height);
+                            
+                            // Get scaled compressed data
+                            compressedDataURL = scaledCanvas.toDataURL(`image/${fileType}`, quality);
+                            compressedBlob = dataURLToBlob(compressedDataURL);
+                            compressedSizeKB = compressedBlob.size / 1024;
+                        }
+                        
+                        // Update compressed preview
+                        compressedPreview.src = compressedDataURL;
+                        compressedSize.textContent = formatFileSize(compressedBlob.size);
+                        
+                        // Store compressed data for download
+                        compressedImageData = {
+                            dataURL: compressedDataURL,
+                            blob: compressedBlob,
+                            size: compressedBlob.size
+                        };
+                        
+                        downloadBtn.disabled = false;
+                        loader.style.display = 'none';
+                    } catch (error) {
+                        console.error('Compression error:', error);
+                        alert('Error compressing image. Please try again.');
+                        loader.style.display = 'none';
+                    }
+                }, 100);
+            }
+            
+            function getFileType(dataURL) {
+                const match = dataURL.match(/^data:image\/(\w+);/);
+                return match ? match[1] : 'jpeg';
+            }
+            
+            function dataURLToBlob(dataURL) {
+                const arr = dataURL.split(',');
+                const mime = arr[0].match(/:(.*?);/)[1];
+                const bstr = atob(arr[1]);
+                let n = bstr.length;
+                const u8arr = new Uint8Array(n);
+                
+                while (n--) {
+                    u8arr[n] = bstr.charCodeAt(n);
+                }
+                
+                return new Blob([u8arr], {type: mime});
+            }
+            
+            function downloadImage() {
+                if (!compressedImageData) return;
+                
+                const link = document.createElement('a');
+                link.href = compressedImageData.dataURL;
+                link.download = `compressed-image.${getFileType(compressedImageData.dataURL)}`;
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            }
+            
+            function resetTool() {
+                fileInput.value = '';
+                originalPreview.src = '';
+                compressedPreview.src = '';
+                originalSize.textContent = '-';
+                compressedSize.textContent = '-';
+                targetSizeDisplay.textContent = '-';
+                downloadBtn.disabled = true;
+                originalImage = null;
+                compressedImageData = null;
+            }
+            
+            function formatFileSize(bytes) {
+                if (bytes < 1024) return bytes + ' B';
+                else if (bytes < 1048576) return (bytes / 1024).toFixed(1) + ' KB';
+                else return (bytes / 1048576).toFixed(1) + ' MB';
+            }
+            
+            // Initialize quality display
+            updateQualityValue();
+        });
+    </script>
+</body>
+</html>

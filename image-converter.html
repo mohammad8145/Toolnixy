@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Convert JPG to PNG, JPG to WEBP, and more with our Free Image Converter. Transform images instantly online. No registration required.">
+    <title>Free Image Converter – Convert JPG, PNG, WEBP Instantly</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --background-color: #FAFAFA;
+            --section-background: #F0F9FF;
+            --header-background: #D6ECFF;
+            --text-color: #333333;
+            --accent-color: #00C2A8;
+            --accent-hover: #00998A;
+            --card-background: #FFFFFF;
+            --shadow: 0 2px 6px rgba(0,0,0,0.05);
+            --radius: 12px;
+            --transition: all 0.3s ease;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            background-image: radial-gradient(#e2e8f0 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+        
+        header {
+            background-color: var(--header-background);
+            border-radius: var(--radius);
+            padding: 40px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.3) 0%, rgba(214,236,255,0) 70%);
+            z-index: 0;
+        }
+        
+        header h1, header .subheading {
+            position: relative;
+            z-index: 1;
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+            color: var(--text-color);
+        }
+        
+        h2 {
+            font-size: 1.8rem;
+            margin: 25px 0 15px;
+            font-weight: 600;
+            color: var(--text-color);
+        }
+        
+        h3 {
+            font-size: 1.4rem;
+            margin: 20px 0 10px;
+            font-weight: 600;
+        }
+        
+        .subheading {
+            font-size: 1.2rem;
+            color: #555;
+            max-width: 700px;
+            margin: 0 auto 20px;
+        }
+        
+        .converter-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+        
+        .upload-section, .preview-section {
+            flex: 1;
+            min-width: 300px;
+            background: var(--card-background);
+            border-radius: var(--radius);
+            padding: 30px;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        .upload-section:hover, .preview-section:hover {
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transform: translateY(-5px);
+        }
+        
+        .upload-section::after, .preview-section::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-color), #00a8ff);
+            border-radius: 0 0 var(--radius) var(--radius);
+        }
+        
+        .upload-area {
+            border: 2px dashed #d1d5db;
+            border-radius: var(--radius);
+            padding: 40px 20px;
+            text-align: center;
+            margin-bottom: 25px;
+            background-color: #f9fafb;
+            cursor: pointer;
+            transition: var(--transition);
+            position: relative;
+        }
+        
+        .upload-area:hover {
+            border-color: var(--accent-color);
+            background-color: #f0fdfa;
+        }
+        
+        .upload-icon {
+            font-size: 48px;
+            color: #9ca3af;
+            margin-bottom: 15px;
+        }
+        
+        .file-input {
+            display: none;
+        }
+        
+        .format-selector {
+            margin: 20px 0;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            background-color: white;
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%2300C2A8' viewBox='0 0 16 16'%3E%3Cpath d='M8 11L3 6h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 12px center;
+            background-size: 16px;
+            appearance: none;
+        }
+        
+        select:focus {
+            border-color: var(--accent-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(0,194,168,0.2);
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            padding: 14px 28px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            width: 100%;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .btn::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 100%;
+            background: var(--accent-hover);
+            transition: all 0.5s ease;
+            z-index: -1;
+        }
+        
+        .btn:hover::after {
+            width: 100%;
+        }
+        
+        .btn:disabled {
+            background-color: #cbd5e1;
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .preview-container {
+            text-align: center;
+            margin-top: 20px;
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f8fafc;
+            border-radius: var(--radius);
+            padding: 20px;
+        }
+        
+        .preview-image {
+            max-width: 100%;
+            max-height: 300px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+        
+        .preview-image:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 15px rgba(0,0,0,0.1);
+        }
+        
+        .file-info {
+            background-color: #f8fafc;
+            border-radius: var(--radius);
+            padding: 15px;
+            margin-top: 20px;
+            font-size: 0.9rem;
+            border-left: 3px solid var(--accent-color);
+        }
+        
+        .download-btn {
+            margin-top: 25px;
+            display: none;
+        }
+        
+        .loading {
+            display: none;
+            text-align: center;
+            margin: 20px 0;
+        }
+        
+        .spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-left-color: var(--accent-color);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 15px;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        .seo-content {
+            background-color: var(--section-background);
+            border-radius: var(--radius);
+            padding: 40px;
+            box-shadow: var(--shadow);
+            margin-top: 40px;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .content-section {
+            margin-bottom: 30px;
+        }
+        
+        .faq-item {
+            background: white;
+            border-radius: var(--radius);
+            padding: 20px;
+            margin-bottom: 15px;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+        }
+        
+        .faq-item:hover {
+            transform: translateX(5px);
+        }
+        
+        .faq-question {
+            font-weight: 600;
+            margin-bottom: 10px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .faq-answer {
+            display: none;
+            padding-top: 10px;
+            border-top: 1px solid #e2e8f0;
+        }
+        
+        .cta {
+            text-align: center;
+            margin-top: 30px;
+            padding: 30px;
+            background: linear-gradient(135deg, var(--accent-color), #00a8ff);
+            color: white;
+            border-radius: var(--radius);
+            box-shadow: 0 4px 10px rgba(0,194,168,0.3);
+        }
+        
+        @media (max-width: 768px) {
+            .converter-container {
+                flex-direction: column;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            header, .seo-content {
+                padding: 25px;
+            }
+        }
+        
+        .format-tags {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .format-tag {
+            background: #e0f2f1;
+            color: #00796b;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Free Image Converter: Convert JPG, PNG, and WEBP Online</h1>
+        <p class="subheading">Transform your images between formats instantly with our browser-based tool - no uploads, no waiting, 100% free!</p>
+        <div class="format-tags">
+            <span class="format-tag">JPG to PNG</span>
+            <span class="format-tag">PNG to JPG</span>
+            <span class="format-tag">JPG to WEBP</span>
+            <span class="format-tag">WEBP to PNG</span>
+            <span class="format-tag">PNG to WEBP</span>
+        </div>
+    </header>
+    
+    <div class="converter-container">
+        <div class="upload-section">
+            <h2>Upload Your Image</h2>
+            <div class="upload-area" id="dropArea">
+                <div class="upload-icon">📁</div>
+                <p>Drag & drop your image here</p>
+                <p>or</p>
+                <button class="btn" id="browseBtn">Browse Files</button>
+                <input type="file" id="fileInput" class="file-input" accept="image/jpeg,image/png,image/webp">
+            </div>
+            
+            <div class="format-selector">
+                <label for="targetFormat">Convert To:</label>
+                <select id="targetFormat">
+                    <option value="image/jpeg">JPG (Best for photos)</option>
+                    <option value="image/png">PNG (Lossless quality)</option>
+                    <option value="image/webp">WEBP (Modern format)</option>
+                </select>
+            </div>
+            
+            <button class="btn" id="convertBtn" disabled>Convert Image</button>
+            
+            <div class="loading" id="loadingIndicator">
+                <div class="spinner"></div>
+                <p>Converting your image...</p>
+            </div>
+        </div>
+        
+        <div class="preview-section">
+            <h2>Preview & Download</h2>
+            <div class="preview-container" id="previewContainer">
+                <p>Your converted image will appear here</p>
+            </div>
+            
+            <div class="file-info" id="fileInfo">
+                <p>No file selected</p>
+            </div>
+            
+            <a class="btn download-btn" id="downloadBtn" download="converted-image">Download Converted Image</a>
+        </div>
+    </div>
+    
+    <div class="seo-content">
+        <div class="content-section">
+            <h2>Free Image Converter: Your Ultimate Online Solution</h2>
+            <p>Welcome to our Free Image Converter tool - the easiest way to convert your images between JPG, PNG, and WEBP formats without any software installation or registration. This powerful browser-based tool allows you to transform your images instantly while maintaining quality. Our free image converter is designed to be the most efficient and user-friendly solution available.</p>
+        </div>
+        
+        <div class="content-section">
+            <h2>How Our Free Image Converter Works</h2>
+            <p>Our image conversion process is designed to be simple and efficient:</p>
+            <ol>
+                <li><strong>Upload:</strong> Select your image file or drag and drop it into the upload area</li>
+                <li><strong>Select Format:</strong> Choose your desired output format (JPG, PNG, or WEBP)</li>
+                <li><strong>Convert:</strong> Click the convert button and watch the magic happen</li>
+                <li><strong>Download:</strong> Save your newly converted image with a single click</li>
+            </ol>
+            <p>The entire process happens right in your browser - no server uploads, no privacy concerns, and no waiting in queues. Our free image converter uses advanced HTML5 Canvas technology to process your images locally.</p>
+        </div>
+        
+        <div class="content-section">
+            <h2>Key Features of Our Free Image Converter</h2>
+            <p>Our tool stands out with these powerful features:</p>
+            <ul>
+                <li><strong>Instant Conversion:</strong> Convert images in milliseconds with our optimized processing engine</li>
+                <li><strong>Privacy Guaranteed:</strong> Your images never leave your computer - all processing happens locally</li>
+                <li><strong>Multiple Formats:</strong> Convert between JPG, PNG, and WEBP seamlessly</li>
+                <li><strong>Quality Preservation:</strong> Advanced algorithms maintain image quality during conversion</li>
+                <li><strong>Zero Cost:</strong> Completely free with no hidden fees or watermarks</li>
+                <li><strong>No Registration:</strong> Use immediately without creating an account</li>
+            </ul>
+            <p>With our free image converter, you can easily transform JPG to PNG, PNG to JPG, JPG to WEBP, and more - all in one convenient tool.</p>
+        </div>
+        
+        <div class="content-section">
+            <h2>Why Choose This Free Image Converter?</h2>
+            <p>In a world full of online tools, our free image converter offers distinct advantages:</p>
+            <p><strong>Browser-Based Convenience:</strong> Access our tool from any device - desktop, tablet, or smartphone - without installation. As long as you have a modern browser, you can convert images anytime, anywhere.</p>
+            <p><strong>Security Focused:</strong> Unlike many online converters that upload your images to their servers, our tool processes everything locally. This means your private photos stay on your device where they belong.</p>
+            <p><strong>Optimized Performance:</strong> Our conversion algorithms are fine-tuned to provide the perfect balance between file size and image quality. Whether you're converting photos for web use or archiving important images, our free image converter delivers excellent results.</p>
+        </div>
+        
+        <div class="content-section">
+            <h2>Browser Compatibility</h2>
+            <p>Our free image converter works seamlessly on all modern browsers including:</p>
+            <ul>
+                <li>Google Chrome (latest version)</li>
+                <li>Mozilla Firefox (latest version)</li>
+                <li>Microsoft Edge (latest version)</li>
+                <li>Apple Safari (latest version)</li>
+                <li>Opera (latest version)</li>
+            </ul>
+            <p>For optimal performance, we recommend using the latest browser version available for your device.</p>
+        </div>
+        
+        <div class="content-section">
+            <h2>Frequently Asked Questions</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Is this free image converter really free?</span>
+                    <span>▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes! Our free image converter is completely free to use with no hidden costs, watermarks, or registration requirements. We believe in providing accessible tools for everyone.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Are my images stored anywhere?</span>
+                    <span>▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p>No. Since all conversion happens in your browser, your images never touch our servers. Once you close the page, all image data is completely removed from memory.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>What is the maximum image size I can convert?</span>
+                    <span>▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p>There's no fixed limit, but very large images (over 20MP) may cause performance issues on some devices. For best results, we recommend images under 10MP for mobile devices.</p>
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question" onclick="toggleFAQ(this)">
+                    <span>Which format should I choose for my images?</span>
+                    <span>▼</span>
+                </div>
+                <div class="faq-answer">
+                    <p>It depends on your needs:
+                    <br>- JPG: Best for photographs (smaller file size)
+                    <br>- PNG: Best for graphics with transparency (lossless quality)
+                    <br>- WEBP: Modern format offering both small file sizes and quality
+                    </p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="content-section">
+            <h2>Conclusion</h2>
+            <p>Our free image converter provides a simple, secure, and powerful solution for all your image conversion needs. Whether you're a professional designer, a blogger, or just someone who needs to convert a photo, this tool makes the process effortless.</p>
+            <p>With support for JPG, PNG, and WEBP formats, browser-based processing, and no registration requirements, we've created what we believe is the best free image converter available online today.</p>
+        </div>
+        
+        <div class="cta">
+            <h2>Ready to Convert Your Images?</h2>
+            <p>Try our free image converter now - no installation, no registration, just instant results!</p>
+        </div>
+    </div>
+
+    <script>
+        // DOM Elements
+        const fileInput = document.getElementById('fileInput');
+        const browseBtn = document.getElementById('browseBtn');
+        const dropArea = document.getElementById('dropArea');
+        const targetFormat = document.getElementById('targetFormat');
+        const convertBtn = document.getElementById('convertBtn');
+        const downloadBtn = document.getElementById('downloadBtn');
+        const previewContainer = document.getElementById('previewContainer');
+        const fileInfo = document.getElementById('fileInfo');
+        const loadingIndicator = document.getElementById('loadingIndicator');
+        
+        let originalImage = null;
+        let convertedImageData = null;
+        
+        // Event Listeners
+        browseBtn.addEventListener('click', () => fileInput.click());
+        fileInput.addEventListener('change', handleFileSelect);
+        convertBtn.addEventListener('click', convertImage);
+        
+        // Drag and drop functionality
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            dropArea.addEventListener(eventName, preventDefaults, false);
+        });
+        
+        function preventDefaults(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+        
+        ['dragenter', 'dragover'].forEach(eventName => {
+            dropArea.addEventListener(eventName, highlight, false);
+        });
+        
+        ['dragleave', 'drop'].forEach(eventName => {
+            dropArea.addEventListener(eventName, unhighlight, false);
+        });
+        
+        function highlight() {
+            dropArea.style.borderColor = '#00C2A8';
+            dropArea.style.backgroundColor = '#f0fdfa';
+        }
+        
+        function unhighlight() {
+            dropArea.style.borderColor = '#d1d5db';
+            dropArea.style.backgroundColor = '#f9fafb';
+        }
+        
+        dropArea.addEventListener('drop', handleDrop, false);
+        
+        function handleDrop(e) {
+            const dt = e.dataTransfer;
+            const files = dt.files;
+            handleFiles(files);
+        }
+        
+        function handleFileSelect(e) {
+            const files = e.target.files;
+            handleFiles(files);
+        }
+        
+        function handleFiles(files) {
+            if (files.length === 0) return;
+            
+            const file = files[0];
+            const validTypes = ['image/jpeg', 'image/png', 'image/webp'];
+            
+            if (!validTypes.includes(file.type)) {
+                alert('Please select a valid image file (JPG, PNG, or WEBP)');
+                return;
+            }
+            
+            // Display file info
+            fileInfo.innerHTML = `
+                <p><strong>File Name:</strong> ${file.name}</p>
+                <p><strong>File Type:</strong> ${file.type.replace('image/', '').toUpperCase()}</p>
+                <p><strong>File Size:</strong> ${formatFileSize(file.size)}</p>
+            `;
+            
+            // Enable convert button
+            convertBtn.disabled = false;
+            
+            // Preview original image
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                previewContainer.innerHTML = `<img src="${e.target.result}" class="preview-image" alt="Original image preview">`;
+                originalImage = new Image();
+                originalImage.src = e.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+        
+        function convertImage() {
+            if (!originalImage) return;
+            
+            // Show loading indicator
+            loadingIndicator.style.display = 'block';
+            convertBtn.disabled = true;
+            
+            // Use setTimeout to allow UI to update before heavy processing
+            setTimeout(() => {
+                try {
+                    const canvas = document.createElement('canvas');
+                    const ctx = canvas.getContext('2d');
+                    
+                    // Set canvas dimensions to match the image
+                    canvas.width = originalImage.width;
+                    canvas.height = originalImage.height;
+                    
+                    // Draw image on canvas
+                    ctx.drawImage(originalImage, 0, 0);
+                    
+                    // Get the selected format
+                    const format = targetFormat.value;
+                    let mimeType = format;
+                    let extension = format.split('/')[1];
+                    
+                    // For JPEG, set quality to 90%
+                    let quality = 0.9;
+                    
+                    // Convert to data URL
+                    let dataURL;
+                    if (format === 'image/jpeg') {
+                        dataURL = canvas.toDataURL(mimeType, quality);
+                    } else {
+                        dataURL = canvas.toDataURL(mimeType);
+                    }
+                    
+                    convertedImageData = dataURL;
+                    
+                    // Display converted image
+                    previewContainer.innerHTML = `<img src="${dataURL}" class="preview-image" alt="Converted image preview">`;
+                    
+                    // Enable download button
+                    downloadBtn.href = dataURL;
+                    downloadBtn.download = `converted-image.${extension}`;
+                    downloadBtn.style.display = 'block';
+                    
+                    // Update file info
+                    fileInfo.innerHTML += `<p><strong>Converted Format:</strong> ${extension.toUpperCase()}</p>`;
+                } catch (error) {
+                    console.error('Conversion error:', error);
+                    alert('Error converting image. Please try again.');
+                } finally {
+                    // Hide loading indicator
+                    loadingIndicator.style.display = 'none';
+                    convertBtn.disabled = false;
+                }
+            }, 100);
+        }
+        
+        // Helper Functions
+        function formatFileSize(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+        }
+        
+        function toggleFAQ(element) {
+            const parent = element.parentElement;
+            const answer = parent.querySelector('.faq-answer');
+            const isOpen = answer.style.display === 'block';
+            
+            answer.style.display = isOpen ? 'none' : 'block';
+            element.querySelector('span:last-child').textContent = isOpen ? '▼' : '▲';
+        }
+    </script>
+</body>
+</html>
